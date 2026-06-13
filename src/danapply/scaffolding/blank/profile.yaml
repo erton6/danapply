@@ -1,0 +1,79 @@
+# DanApply profile — BLANK TEMPLATE
+#
+# `danapply init` seeds this empty template. Onboarding fills it in from your
+# interview; you can also edit it by hand. Replace every placeholder below.
+#
+# All fields marked required must be present (they can stay as placeholder
+# text until onboarding runs). DanApply re-reads this file on every render.
+
+name: "Your Name"
+tagline_default: "Your Tagline | What You Do"
+
+contact:
+  phone: ""
+  email: ""
+  linkedin_url: ""   # optional
+  location: ""
+
+# Optional: portfolio block highlighted at the top of the CV + cover letter,
+# with a clickable link. When absent (or left blank), the PORTFOLIO section
+# is omitted from the PDFs entirely. The CV session asks about this
+# explicitly — uncomment and fill in when the user has a link:
+# portfolio:
+#   display: "yourname.com"          # clean label shown on the CV
+#   href: "https://yourname.com"     # full URL the label links to
+
+# Optional: relative paths are resolved against the profile/ directory.
+# Set during the CV session — `danapply photo set <path>` installs the
+# headshot and this points at it.
+photo_path: ""
+
+# Add one entry per language. Example: { name: "English", level: "Fluent" }
+languages: []
+
+# Professional references. Example: { name: "Jane Doe", email: "jane@example.com" }
+references: []
+
+# CV body content — the renderer draws experience and education from here.
+# Onboarding fills these in. Entry shape:
+#   - role: "Job Title"
+#     company: "Employer"
+#     dates: "2020–2022"
+#     location: "City, Country"
+#     bullets:
+#       - "Concrete, factual statement of what you did."
+experience: []
+
+# Entry shape:
+#   - degree: "MSc in ..."
+#     school: "University"
+#     dates: "2018–2020"
+#     bullets: []
+education: []
+
+# Curated skill keywords used by the scoring + tailoring layers. Fill these in
+# (onboarding will help) so DanApply can match job requirements to your skills.
+user_skills:
+  tools: []
+  methods: []
+  domains: []
+  soft_skills: []
+
+# Accent colour for the CV / cover letter design system (dark forest/teal
+# default). The CV session asks you to pick one explicitly — any hex works,
+# e.g. navy "#1F3A5F", burgundy "#5F1F2E", charcoal "#333333", teal "#1F4737".
+accent_color: "#1F4737"
+
+# Visual style preset — how the CV should feel. One of:
+#   classic  (serious / traditional)     minimal (minimalistic, accent in details)
+#   modern   (smart / contemporary)      creative (slightly creative, more colour)
+# All presets are ATS-friendly: single column, real text, standard headers.
+cv_style: "classic"
+
+# Cover-letter style. Leave blank / omit to match cv_style (the default);
+# set explicitly only if the letter should look different from the CV.
+# cover_letter_style: "classic"
+
+# Uniform font/spacing scale for the CV (0.8–1.05; 1.0 = default).
+# Lower to e.g. 0.95 when the CV spills a line or two onto an extra page.
+# cv_font_scale: 1.0

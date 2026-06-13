@@ -1,0 +1,105 @@
+[project]
+name = "danapply"
+version = "0.5.3"
+description = "Job-application co-pilot for the Danish job market — Claude Code plugin engine"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "erton6" },
+]
+keywords = ["denmark", "jobs", "cv", "cover-letter", "jobnet", "dagpenge"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "typer>=0.12.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0.0",
+    "reportlab>=4.0.0",
+    "pillow>=10.0.0",
+    "platformdirs>=4.0.0",
+    "pypdf>=5.0.0",
+    "python-slugify>=8.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.6.0",
+    "mypy>=1.10.0",
+    "types-pyyaml>=6.0.0",
+]
+
+[project.scripts]
+danapply = "danapply.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/erton6/danapply"
+Repository = "https://github.com/erton6/danapply"
+Issues = "https://github.com/erton6/danapply/issues"
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12.0"]
+build-backend = "uv_build"
+
+# ---------------------------------------------------------------------------
+# Ruff — linter + formatter
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".venv", "build", "dist"]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "UP",
+    "B",
+    "SIM",
+    "PL",
+    "RUF",
+]
+ignore = [
+    "PLR0913",
+    "PLR2004",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004", "S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--cov=danapply",
+    "--cov-report=term-missing",
+]
+
+# ---------------------------------------------------------------------------
+# Mypy
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true

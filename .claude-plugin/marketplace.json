@@ -1,0 +1,14 @@
+{
+  "name": "danapply",
+  "owner": {
+    "name": "erton6",
+    "url": "https://github.com/erton6"
+  },
+  "plugins": [
+    {
+      "name": "danapply",
+      "source": "./",
+      "description": "Job-application co-pilot for the Danish job market — voice-matched applications, Jobnet automation, dagpenge tracking. No API key required."
+    }
+  ]
+}

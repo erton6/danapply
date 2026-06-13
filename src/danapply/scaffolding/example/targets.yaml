@@ -1,0 +1,39 @@
+# DanApply targets — example
+# Defines what roles you are hunting for and the constraints DanApply uses
+# to filter and score postings.
+#
+# DanApply re-reads this file on every discovery and scoring run.
+
+roles:
+  tier_a_titles:
+    - "Business Analyst"
+    - "Strategy Analyst"
+    - "Insights Analyst"
+    - "Market Intelligence Analyst"
+    - "Research Analyst"
+  tier_b_titles:
+    - "Associate Consultant"
+    - "Product Analyst"
+    - "Junior Consultant"
+
+geography:
+  primary:
+    - "Aarhus"
+    - "Copenhagen"
+  acceptable:
+    - "any DK city with train"
+  remote_ok: true
+
+arrangement: hybrid          # office | hybrid | remote
+seniority: early_career      # entry | junior | mid | senior | flexible
+
+salary_floor_monthly_dkk: 38000      # optional
+salary_target_monthly_dkk: 45000     # optional
+
+constraints:
+  excluded_industries:
+    - "tobacco"
+    - "gambling"
+    - "fossil_fuels"
+  excluded_companies: []
+  max_commute_minutes_one_way: 90    # optional

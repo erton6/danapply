@@ -1,0 +1,118 @@
+# DanApply profile — EXAMPLE / DEMO PERSONA
+#
+# "Sofia Almeida" is a FICTIONAL demo persona. She is not a real person; the
+# contact details, links and references are placeholders (example.com). This
+# file shows what a filled-in profile looks like and drives
+# `danapply render-sample`. A real user's profile is built by onboarding —
+# `danapply init` seeds a BLANK template, not this persona.
+#
+# DanApply re-reads this file on every render, so changes here apply
+# immediately to the next CV or cover letter you generate.
+
+name: "SOFIA ALMEIDA"
+tagline_default: "Analyst & Communicator | Turning Research into Clear Decisions"
+
+contact:
+  phone: "+45 00 00 00 00"
+  email: "sofia.almeida@example.com"
+  linkedin_url: "https://www.linkedin.com/in/sofia-almeida-example"   # optional
+  location: "Copenhagen, Denmark"
+
+# Optional: portfolio block highlighted at the top of the CV
+portfolio:
+  display: "sofia-almeida.example"
+  href: "https://example.com/"
+
+# Optional: relative paths are resolved against the profile/ directory
+photo_path: "photo.jpeg"
+
+languages:
+  - { name: "Portuguese", level: "Native (mother tongue)" }
+  - { name: "English",    level: "Fluent" }
+  - { name: "Danish",     level: "Intermediate (B1)" }
+  - { name: "Spanish",    level: "Intermediate" }
+
+references:
+  - { name: "Maria Santos",   email: "m.santos@example.com" }
+  - { name: "Lars Nielsen",   email: "l.nielsen@example.com" }
+
+# CV body content — the renderer draws experience and education from here.
+# Entries render top-to-bottom in list order.
+experience:
+  - role: "Marketing Analyst (Intern)"
+    company: "NordRetail A/S"
+    dates: "2024"
+    location: "Copenhagen, Denmark"
+    bullets:
+      - "Built campaign-performance dashboards in Power BI that gave the commercial team a weekly read on promotion effectiveness."
+      - "Ran a customer segmentation that informed the targeting of two seasonal campaigns, presented to marketing and category leads."
+      - "Supported A/B tests on the e-commerce site and summarised results into clear recommendations."
+  - role: "Communications Coordinator"
+    company: "Lisbon Media Group"
+    dates: "2020–2022"
+    location: "Lisbon, Portugal"
+    bullets:
+      - "Produced data-backed articles and reports on retail and consumer trends for a business audience."
+      - "Coordinated with contributors and external partners to plan and deliver editorial campaigns."
+      - "Introduced simple analytics reporting on content performance to guide the editorial calendar."
+  - role: "Junior Analyst"
+    company: "Iberia Insights"
+    dates: "2019–2020"
+    location: "Lisbon, Portugal"
+    bullets:
+      - "Assisted senior analysts with market sizing and competitive research across consumer-goods categories."
+      - "Prepared survey instruments and cleaned and analysed the resulting datasets."
+      - "Built recurring reports used in client-facing presentations."
+
+education:
+  - degree: "MSc in Business Administration"
+    school: "Copenhagen Business School"
+    dates: "2022–2024"
+    bullets:
+      - "Focus on marketing analytics, consumer behaviour, and quantitative methods."
+      - "Projects translating analytics into actionable commercial insights."
+  - degree: "BSc in Economics"
+    school: "NOVA University Lisbon"
+    dates: "2016–2019"
+    bullets:
+      - "Foundations in economics and statistics; Erasmus exchange semester at Stockholm University (2018)."
+
+# Curated skill keywords used by the scoring + tailoring layers.
+# These should match the substance of your cv_content.md — they help DanApply
+# match job requirements to what you actually have experience with.
+user_skills:
+  tools:
+    - Python
+    - SQL
+    - Power BI
+    - Excel
+    - PowerPoint
+    - Tableau
+  methods:
+    - market research
+    - competitive analysis
+    - survey design
+    - data visualisation
+    - A/B testing
+    - segmentation
+  domains:
+    - retail
+    - consumer goods
+    - sustainability
+    - digital marketing
+    - e-commerce
+  soft_skills:
+    - stakeholder engagement
+    - presentation
+    - written communication
+    - facilitation
+    - cross-functional collaboration
+
+# Accent colour for the CV / cover letter design system (dark forest/teal default)
+accent_color: "#1F4737"
+
+# Visual style preset: classic | minimal | modern | creative (all ATS-friendly)
+cv_style: "classic"
+
+# Cover-letter style — omit to match cv_style.
+# cover_letter_style: "classic"

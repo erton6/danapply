@@ -1,0 +1,206 @@
+# DanApply — Trigger patterns
+#
+# Machine-readable map from user intent to workflow.
+# Claude Code uses this for routing; the patterns are illustrative,
+# not exhaustive. Match intent, not exact phrasing.
+#
+# Schema:
+#   workflow_name:
+#     intent: <one-line description of user goal>
+#     aliases: [<natural-language phrases users actually say>]
+#     anti_patterns: [<phrases that look like triggers but aren't>]
+#     priority: <int — lower wins when multiple match>
+#     confirms_before_running: <bool — whether to ask "should I do this?" first>
+
+onboarding:
+  intent: First-run interview to build the user's profile
+  aliases:
+    - "this is my first time"
+    - "I'm new here"
+    - "haven't used this before"
+    - "set me up"
+    - "let's start"
+    - "where do I begin"
+  trigger_condition: "profile.yaml does not exist at ~/danapply-data/profile/"
+  priority: 1
+  confirms_before_running: false
+
+paste_first_redirect:
+  intent: User asks DanApply to find/fetch jobs — explain the paste-first model
+  aliases:
+    - "discovery run"
+    - "find me new jobs"
+    - "what's new"
+    - "any matches today"
+    - "any new postings"
+    - "scan for jobs"
+    - "show me what's out there"
+    - "find work"
+  anti_patterns:
+    - "I found a job (this is process_new)"
+    - "find me the McKinsey job (this is tailor or process_new)"
+  fallback_action: |
+    DanApply never crawls job boards or fetches URLs. Explain briefly and
+    redirect: "I work with what you bring me — paste a posting, drop
+    files into raw_searches/, send a screenshot, or (if you have an
+    email connector set up) I can go through your job-alert emails.
+    Got something for me?"
+  priority: 20
+  confirms_before_running: false
+
+process_new:
+  intent: Parse jobs the user has added (files, paste, image, email)
+  aliases:
+    - "I added some files"
+    - "new PDFs in raw_searches"
+    - "process this"
+    - "look at this job"
+    - "[any pasted job description text > 200 chars]"
+    - "[any image attached]"
+    - "check my job-alert emails"
+    - "I found a job"
+    - "got something for you"
+    - "here's one"
+  anti_patterns:
+    - "I got an interview (this is interview_prep)"
+    - "I applied to... (this is joblog_prompt)"
+    - "[a bare URL] (don't fetch it — ask for the posting text)"
+  priority: 10
+  confirms_before_running: false
+
+tailor:
+  intent: Generate CV and cover letter for a specific job
+  aliases:
+    - "tailor a CV for"
+    - "make materials for"
+    - "cover letter for"
+    - "generate the application for"
+    - "prepare X for me"
+    - "build the CV"
+  anti_patterns:
+    - "tailor a Jobnet entry (this is joblog_prompt)"
+  priority: 15
+  confirms_before_running: false
+
+interview_prep:
+  intent: Prepare for an interview at a company the user has applied to
+  aliases:
+    - "I got an interview"
+    - "they invited me to talk"
+    - "[company] wants to interview me"
+    - "[company] invited me for a chat"
+    - "interview prep for X"
+    - "they want me to come in"
+    - "I got a call from"
+    - "scheduled an interview"
+    - "interview tomorrow at"
+    - "I have a case interview"
+  anti_patterns:
+    - "I applied to... (this is joblog_prompt)"
+    - "I'm interested in... (this is tailor)"
+  priority: 5  # high priority — interview prep is time-sensitive
+  confirms_before_running: false
+
+joblog_prompt:
+  intent: Generate Jobnet "Opret Joblog" automation prompt
+  aliases:
+    - "log this to Jobnet"
+    - "joblog for today"
+    - "I applied"
+    - "I submitted"
+    - "I sent it in"
+    - "I just applied to"
+    - "Jobnet entries"
+    - "create the joblog"
+  anti_patterns:
+    - "I got rejected (this is log_outcome)"
+  priority: 12
+  confirms_before_running: false
+
+log_outcome:
+  intent: Record an outcome on a prior application (interview/reject/ghost/offer)
+  aliases:
+    - "I got rejected"
+    - "they rejected me"
+    - "got a no from"
+    - "they ghosted"
+    - "no response from"
+    - "still nothing from X"
+    - "got the offer"
+    - "I got an offer"
+    - "they made me an offer"
+    - "got moved to the next round"
+    - "first interview went well"
+    - "they want a second round"
+  anti_patterns:
+    - "I got an interview (this is interview_prep — different action)"
+  priority: 8
+  confirms_before_running: false
+
+dagpenge_check:
+  intent: Report dagpenge compliance status for the current week
+  aliases:
+    - "dagpenge check"
+    - "this week's applications"
+    - "am I behind on dagpenge"
+    - "compliance"
+    - "how many have I logged"
+    - "weekly count"
+    - "what's my number"
+  trigger_condition: "dagpenge.yaml exists in profile/"
+  priority: 25
+  confirms_before_running: false
+
+update_profile:
+  intent: Re-enter onboarding with existing answers pre-filled
+  aliases:
+    - "update my profile"
+    - "my situation changed"
+    - "re-do onboarding"
+    - "I got a new job"
+    - "I'm no longer on dagpenge"
+    - "let's revisit my targets"
+    - "I want to change my CV content"
+    - "my Danish has improved"
+  priority: 30
+  confirms_before_running: true  # destructive; confirm first
+
+# ---- Special handlers ----
+
+ambiguous_intent:
+  intent: User input doesn't clearly match any workflow
+  fallback_action: |
+    Ask one clarifying question. Examples:
+    - "Want me to look at the McKinsey job (process_new), tailor materials
+       for it (tailor), or prep for an interview there (interview_prep)?"
+    - "Are you logging this as 'applied' (joblog_prompt) or as an 'outcome
+       received' (log_outcome)?"
+  priority: 999
+  confirms_before_running: false
+
+session_start_no_intent:
+  intent: User opens DanApply without saying anything specific
+  fallback_action: |
+    Run the session-start ritual:
+    1. Read profile, targets, voice_profile, dagpenge (if exists)
+    2. Read latest run summary
+    3. Check raw_searches/ for new files
+    4. Greet with one specific observation + one open question
+    5. Don't push for new postings — wait for direction
+  priority: 1000
+  confirms_before_running: false
+
+# ---- Workflow chaining hints ----
+#
+# Common multi-workflow sequences DanApply should anticipate:
+#
+#   onboarding → process_new (user wants to test the tool right away)
+#   tailor → joblog_prompt (user finishes applying, wants Jobnet logged)
+#   process_new → tailor → joblog_prompt (full inbound flow)
+#   log_outcome (interview) → interview_prep (chain into prep mode)
+#
+# When DanApply finishes a workflow, it often makes sense to suggest the
+# next likely workflow — but as an offer, not an assumption. Example:
+#
+#   "Tailored. Want the joblog prompt when you're ready to submit, or
+#    save that for later?"

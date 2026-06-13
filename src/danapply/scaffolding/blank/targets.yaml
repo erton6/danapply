@@ -1,0 +1,27 @@
+# DanApply targets — BLANK TEMPLATE
+# Defines what roles you are hunting for and the constraints DanApply uses
+# to filter and score postings. Onboarding fills this in; edit any time.
+#
+# DanApply re-reads this file on every discovery and scoring run.
+
+roles:
+  # The main hunt — exact titles you are actively searching for.
+  tier_a_titles: []
+  # Adjacent / stretch titles you'd take seriously if the role is good.
+  tier_b_titles: []
+
+geography:
+  primary: []          # e.g. ["Copenhagen", "Aarhus"]
+  acceptable: []       # e.g. ["any DK city with train"]
+  remote_ok: true
+
+arrangement: hybrid          # office | hybrid | remote
+seniority: early_career      # entry | junior | mid | senior | flexible
+
+salary_floor_monthly_dkk:            # optional, e.g. 35000
+salary_target_monthly_dkk:           # optional, e.g. 42000
+
+constraints:
+  excluded_industries: []    # e.g. ["weapons", "tobacco"]
+  excluded_companies: []
+  max_commute_minutes_one_way:        # optional, e.g. 90

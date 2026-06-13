@@ -1,0 +1,22 @@
+{
+  "name": "danapply",
+  "displayName": "DanApply",
+  "description": "Job-application co-pilot for the Danish job market. Claude writes voice-matched, Danish-register cover letters and interview briefs in-conversation; a local Python engine handles parsing, scoring, SQLite memory, PDF rendering, Jobnet prompts, and dagpenge tracking. No API key required.",
+  "version": "0.5.3",
+  "author": {
+    "name": "erton6",
+    "url": "https://github.com/erton6"
+  },
+  "homepage": "https://github.com/erton6/danapply",
+  "repository": "https://github.com/erton6/danapply",
+  "license": "MIT",
+  "keywords": [
+    "denmark",
+    "jobs",
+    "cv",
+    "cover-letter",
+    "jobnet",
+    "dagpenge",
+    "job-search"
+  ]
+}
