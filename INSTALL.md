@@ -13,12 +13,17 @@ configure** — all language work happens inside your Claude Code session.
 
 ## Requirements
 
-- [Claude Code](https://code.claude.com/docs/en/setup) (CLI or desktop app),
-  with a paid Claude plan (Pro / Max / Team / Enterprise)
-- [uv](https://docs.astral.sh/uv/) — runs the engine (`uv run`) and
+- **[Claude Code](https://code.claude.com/docs/en/setup) CLI** (the `claude`
+  command in your terminal), with a paid Claude plan (Pro / Max / Team /
+  Enterprise). The desktop app alone does not provide the `claude plugin`
+  commands used below.
+- **[Git](https://git-scm.com/downloads)** — required: `claude plugin
+  marketplace add <github-repo>` clones this repo with Git. On Windows,
+  install [Git for Windows](https://git-scm.com/downloads/win).
+- **[uv](https://docs.astral.sh/uv/)** — runs the engine (`uv run`) and
   provides Python 3.11+ automatically
 - ~50 MB disk
-- macOS, Linux, or WSL on Windows
+- macOS, Linux, or Windows (native or WSL)
 
 ---
 

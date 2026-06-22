@@ -15,7 +15,7 @@ from danapply import __version__, paths
 
 
 def test_version_is_set() -> None:
-    assert __version__ == "0.5.3"
+    assert __version__ == "0.5.4"
 
 
 def test_default_data_dir_under_home() -> None:

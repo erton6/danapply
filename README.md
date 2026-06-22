@@ -110,8 +110,10 @@ fetches anything.
 through everything (installing Claude Code, `uv`, and the plugin) in
 plain language.
 
-**Quick version** (assumes [Claude Code](https://code.claude.com/docs/en/setup)
-and [`uv`](https://docs.astral.sh/uv/) are installed):
+**Quick version** (assumes [Git](https://git-scm.com/downloads),
+[Claude Code](https://code.claude.com/docs/en/setup), and
+[`uv`](https://docs.astral.sh/uv/) are installed — `git` is required because
+adding the marketplace clones this repo):
 
 ```bash
 claude plugin marketplace add erton6/danapply
@@ -223,7 +225,7 @@ sync, paid features, non-DK markets in v1.
 
 | Version | Tests | Status |
 |---|---|---|
-| v0.5.3 | 305 passing | **Current** — standalone letters, base CV from real content, style presets + accent colour, portfolio handling, formatting controls |
+| v0.5.4 | 305 passing | **Current** — standalone letters, base CV from real content, style presets + accent colour, portfolio handling, formatting controls, install-docs fixes |
 | v0.4.0 | 275 passing | Identity-first onboarding, Unicode PDFs, per-job taglines, photo flow |
 | v0.3.0 | 261 passing | Paste-first intake, profile-driven CV body, in-conversation onboarding |
 

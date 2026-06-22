@@ -1,6 +1,6 @@
 [project]
 name = "danapply"
-version = "0.5.3"
+version = "0.5.4"
 description = "Job-application co-pilot for the Danish job market — Claude Code plugin engine"
 readme = "README.md"
 license = { file = "LICENSE" }

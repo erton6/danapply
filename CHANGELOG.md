@@ -4,6 +4,31 @@ All notable changes to DanApply documented here. Format roughly follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioned with
 [SemVer](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.4] — 2026-06-13
+
+**Install-docs fixes from the first friend test (Windows).** A real
+install attempt hit two blockers the docs didn't cover; both fixed.
+
+### Fixed
+
+- **Git is now listed as a required prerequisite.** `claude plugin
+  marketplace add erton6/danapply` clones this repo with Git, so a
+  machine without Git fails with *"Command 'git' not found"*.
+  GETTING_STARTED.md adds a dedicated Git install step (Git for Windows /
+  `xcode-select` / apt), and README + INSTALL list Git as required.
+- **Clarified that setup needs the `claude` CLI, not just the Desktop
+  app.** The previous guide implied the Desktop app alone was enough,
+  which produced *"'claude' is not recognized"* when running the plugin
+  commands. GETTING_STARTED.md now states the setup is terminal-based,
+  installs the CLI explicitly, and frames the Desktop app as optional for
+  daily use.
+- GETTING_STARTED.md restructured into ordered tool installs (Git →
+  Claude Code → uv → plugin), each with Windows + Mac commands, a
+  "restart your terminal after installing" reminder, and troubleshooting
+  entries for both errors above.
+
+(No engine/behaviour changes — documentation only.)
+
 ## [0.5.3] — 2026-06-12
 
 **No em-dashes, adjustable formatting, page-spill detection.**
@@ -467,6 +492,7 @@ profile.yaml + targets.yaml + (optional) dagpenge.yaml.
 
 ---
 
+[0.5.4]: https://github.com/erton6/danapply/releases/tag/v0.5.4
 [0.5.3]: https://github.com/erton6/danapply/releases/tag/v0.5.3
 
 <!-- Versions 0.0.1–0.5.2 are documented above as development history; this
